@@ -1,9 +1,10 @@
-import userStore from '../stores/users.mjs'
+import userStore from '../stores/users'
 import Boom from '@hapi/boom'
+import { User } from 'src/models'
 
 const userDomain = {
   // Getting all users
-  getUsers: async (req, res, next) => {
+  getUsers: async () => {
     const users = await userStore.getUsers()
 
     if (!users) return null
@@ -12,7 +13,7 @@ const userDomain = {
   },
 
   // Getting a specific user by id
-  getUser: async (userId) => {
+  getUser: async (userId: string) => {
     if (!userId) throw Boom.badRequest('User id is required')
 
     const user = await userStore.getUser(userId)
@@ -23,7 +24,7 @@ const userDomain = {
   },
 
   // Adding a new user
-  addUser: async (user) => {
+  addUser: async (user: User) => {
     if (!user.name || !user.age) throw Boom.badRequest('User name and age are required')
 
     const newUser = await userStore.addUser(user)
