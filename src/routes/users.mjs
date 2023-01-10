@@ -1,4 +1,4 @@
-import controller from '../controllers/users'
+import controller from '../controllers/users.mjs'
 import { Router } from 'express'
 //import auth from '../middlewares/auth'
 

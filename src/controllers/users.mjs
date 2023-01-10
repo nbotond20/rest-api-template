@@ -1,9 +1,8 @@
-import { NextFunction, Request, Response } from 'express'
-import userDomain from '../domains/users'
+import userDomain from '../domains/users.mjs'
 
 const userController = {
   // Getting all users
-  getUsers: async (req: Request, res: Response, next: NextFunction) => {
+  getUsers: async (req, res, next) => {
     try {
       const users = await userDomain.getUsers()
 
@@ -16,7 +15,7 @@ const userController = {
   },
 
   // Getting a specific user by id
-  getUser: async (req: Request, res: Response, next: NextFunction) => {
+  getUser: async (req, res, next) => {
     try {
       const user = await userDomain.getUser(req.params.id)
 
@@ -29,7 +28,7 @@ const userController = {
   },
 
   // Adding a new user
-  addUser: async (req: Request, res: Response, next: NextFunction) => {
+  addUser: async (req, res, next) => {
     try {
       const user = await userDomain.addUser(req.body)
 
