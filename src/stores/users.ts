@@ -13,7 +13,7 @@ const userStore = {
   },
 
   getUser: async (userId: string) => {
-    return userDatabase.find((user) => user.id === userId)
+    return userDatabase.find(user => user.id === userId)
   },
 
   addUser: async (user: Omit<User, 'id'>) => {
