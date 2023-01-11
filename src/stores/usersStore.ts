@@ -18,6 +18,11 @@ const userStore = {
     return userDatabase.find(user => user.id === userId)
   },
 
+  // Get a specific user by email
+  getUserByEmail: async (email: string) => {
+    return userDatabase.find(user => user.email === email)
+  },
+
   // Create a new user
   createUser: async (user: User) => {
     userDatabase.push(user)

@@ -9,7 +9,7 @@ const userDomain = {
   getUsers: async () => {
     const users = await userStore.getUsers()
 
-    if (!users) return null
+    if (!users) throw Boom.notFound('No users found')
 
     return users
   },
@@ -20,7 +20,7 @@ const userDomain = {
 
     const user = await userStore.getUser(userId)
 
-    if (!user) return null
+    if (!user) throw Boom.notFound('User not found')
 
     return user
   },
@@ -30,6 +30,9 @@ const userDomain = {
     const validation = createUserRequestBodySchema.safeParse(createUser)
 
     if (!validation.success) throw Boom.badRequest('Invalid input', validation.error)
+
+    const oldUser = await userStore.getUserByEmail(createUser.email)
+    if (oldUser) throw Boom.conflict('User already exists')
 
     const user: User = {
       id: uuid4(),
