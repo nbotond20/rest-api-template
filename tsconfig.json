@@ -14,7 +14,15 @@
     "typeRoots": ["types"],
     "resolveJsonModule": true,
     "lib": ["es2015", "DOM"],
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@models": ["./src/models/index.ts"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@domains/*": ["./src/domains/*"],
+      "@stores/*": ["./src/stores/*"]
+    }
   },
   "include": ["src/**/*", "test/**/*"]
 }
