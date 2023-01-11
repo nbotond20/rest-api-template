@@ -1,8 +1,12 @@
-import { Boom } from '@hapi/boom'
+import Boom, { Boom as BoomError } from '@hapi/boom'
 import { NextFunction, Request, Response } from 'express'
 
-const errorHandler = (err: Boom, req: Request, res: Response, next: NextFunction) => {
-  if (err) return res.status(err.output.statusCode || 500).send({ message: err.message || 'Internal Server Error' })
+// Custom error handler that returns a JSON object with the error message
+const errorHandler = (err: BoomError, _req: Request, res: Response, next: NextFunction) => {
+  const boomError: BoomError = Boom.isBoom(err) ? err : Boom.boomify(err)
+  res
+    .status(boomError.output.statusCode)
+    .json({ status: boomError.output.statusCode, message: Boom.isBoom(err) ? err.message : 'Internal server error' })
   next()
 }
 

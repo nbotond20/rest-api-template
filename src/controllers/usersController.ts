@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import userDomain from '../domains/users'
+import userDomain from '@domains/usersDomain'
+import { CreateUserRequestBody } from '@models'
 
 const userController = {
   // Getting all users
@@ -18,7 +19,8 @@ const userController = {
   // Getting a specific user by id
   getUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const user = await userDomain.getUser(req.params.id)
+      const userId = req.params.id as string
+      const user = await userDomain.getUser(userId)
 
       if (user) return res.status(200).send(user)
 
@@ -29,11 +31,12 @@ const userController = {
   },
 
   // Adding a new user
-  addUser: async (req: Request, res: Response, next: NextFunction) => {
+  createUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const user = await userDomain.addUser(req.body)
+      const user = req.body as CreateUserRequestBody
+      const newUser = await userDomain.createUser(user)
 
-      if (user) return res.status(201).send(user)
+      if (newUser) return res.status(201).send(newUser)
 
       res.status(500).send({ message: 'User not created' })
     } catch (error) {

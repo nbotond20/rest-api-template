@@ -1,6 +1,6 @@
-import controller from '../controllers/users'
+import controller from '@controllers/usersController'
 import { Router } from 'express'
-//import auth from '../middlewares/auth'
+//import auth from '@middlewares/auth'
 
 const router = Router()
 
@@ -12,7 +12,7 @@ const router = Router()
 
 router.get('/', controller.getUsers)
 router.get('/:id', controller.getUser)
-router.post('/', controller.addUser)
+router.post('/', controller.createUser)
 
 // To use the auth middleware
 // router.get('/', auth, controller.getUsers)
