@@ -4,13 +4,18 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ['no-only-tests'],
   extends: ['eslint:recommended', 'plugin:prettier/recommended', 'prettier'],
-  rules: {
-    'no-only-tests/no-only-tests': 'error',
-  },
+  ignorePatterns: ['pnpm-lock.yaml', 'package.json', 'babel.config.json'],
+  parser: '@babel/eslint-parser',
   parserOptions: {
     sourceType: 'module',
   },
-  parser: '@babel/eslint-parser',
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+  },
 }

@@ -5,7 +5,6 @@
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "eslint-plugin-no-only-tests": "^3.0.0",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -14,6 +13,9 @@
   },
   "description": "",
   "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/eslint-parser": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -23,15 +25,15 @@
   },
   "keywords": [],
   "license": "ISC",
-  "main": "src/index.ts",
+  "main": "src/index.mjs",
   "name": "server",
   "scripts": {
     "dev": "nodemon src/index.mjs",
-    "build": "tsc --project tsconfig.build.json",
-    "lint": "eslint \"**/*.{ts,json}\"",
-    "lint:fix": "eslint \"**/*.{ts,json}\" --quiet --fix",
+    "build": "babel src -d dist --extensions \".mjs\"",
+    "lint": "eslint \"**/*.{mjs,json}\"",
+    "lint:fix": "eslint \"**/*.{mjs,json}\" --quiet --fix",
     "preinstall": "npx only-allow pnpm",
-    "format": "prettier --write  src/**/*.ts test/**/*.ts"
+    "format": "prettier --write  src/**/*.mjs"
   },
-  "version": "1.0.0"
+  "version": "0.1.0"
 }

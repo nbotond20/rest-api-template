@@ -1,4 +1,4 @@
-import userDomain from '../domains/users.mjs'
+import userDomain from '../domains/userDomain.mjs'
 
 const userController = {
   // Getting all users

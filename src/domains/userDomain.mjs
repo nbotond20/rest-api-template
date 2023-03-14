@@ -1,9 +1,9 @@
-import userStore from '../stores/users.mjs'
+import userStore from '../stores/userStore.mjs'
 import Boom from '@hapi/boom'
 
 const userDomain = {
   // Getting all users
-  getUsers: async (req, res, next) => {
+  getUsers: async () => {
     const users = await userStore.getUsers()
 
     if (!users) return null

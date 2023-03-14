@@ -1,7 +1,7 @@
 import app from './app.mjs'
 import errorHandler from './middlewares/errorHandler.mjs'
 
-import userRoute from './routes/users.mjs'
+import userRoute from './routes/userRoute.mjs'
 
 // List the available routes
 app.use('/users', userRoute)
