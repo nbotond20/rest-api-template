@@ -45,7 +45,8 @@
     "lint": "eslint \"**/*.{ts,json}\"",
     "lint:fix": "eslint \"**/*.{ts,json}\" --quiet --fix",
     "preinstall": "npx only-allow pnpm",
-    "format": "prettier --write  src/**/*.ts"
+    "format": "prettier --write  src/**/*.ts",
+    "postinstall": "prisma generate"
   },
   "version": "0.1.0"
 }
