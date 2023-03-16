@@ -21,7 +21,8 @@
       "@controllers/*": ["./src/controllers/*"],
       "@routes/*": ["./src/routes/*"],
       "@domains/*": ["./src/domains/*"],
-      "@stores/*": ["./src/stores/*"]
+      "@stores/*": ["./src/stores/*"],
+      "@db": ["./src/db.ts"]
     }
   },
   "include": ["src/**/*", "test/**/*"]
