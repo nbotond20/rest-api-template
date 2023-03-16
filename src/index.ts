@@ -3,7 +3,7 @@ import errorHandler from '@middlewares/errorHandler'
 import userRoute from '@routes/usersRoute'
 import { Boom } from '@hapi/boom'
 
-const BASE_URL = '/api/rest'
+const BASE_URL = '/api/v1'
 function setBasePath(route: string) {
   return `${BASE_URL}${route}`
 }
