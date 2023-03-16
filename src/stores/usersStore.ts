@@ -45,6 +45,15 @@ const userStore = {
       },
     })
   },
+
+  // Delete a user
+  deleteUser: async (userId: string) => {
+    return prisma.user.delete({
+      where: {
+        id: userId,
+      },
+    })
+  },
 }
 
 export default userStore

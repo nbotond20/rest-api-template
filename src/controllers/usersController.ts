@@ -59,6 +59,20 @@ const userController = {
       next(error)
     }
   },
+
+  // Deleting a user
+  deleteUser: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.params.id as string
+      const deletedUser = await userDomain.deleteUser(userId)
+
+      if (deletedUser) return res.status(200).send(deletedUser)
+
+      res.status(500).send({ message: 'User not deleted!' })
+    } catch (error) {
+      next(error)
+    }
+  },
 }
 
 export default userController

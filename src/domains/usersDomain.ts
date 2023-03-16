@@ -67,6 +67,21 @@ const userDomain = {
 
     return updatedUser
   },
+
+  // Deleting a user
+  deleteUser: async (userId: string) => {
+    if (!userId) throw Boom.badRequest('User id is required!')
+
+    const user = await userStore.getUser(userId)
+
+    if (!user) throw Boom.notFound('User not found!')
+
+    const deletedUser = await userStore.deleteUser(userId)
+
+    if (!deletedUser) return null
+
+    return deletedUser
+  },
 }
 
 export default userDomain
