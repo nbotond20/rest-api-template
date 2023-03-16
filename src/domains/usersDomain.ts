@@ -1,7 +1,7 @@
 import userStore from '@stores/usersStore'
 import Boom from '@hapi/boom'
-import { CreateUserInput, CreateUserRequestBody } from '@models'
-import { createUserRequestBodySchema } from '../models/users/usersModels.schema'
+import { CreateUserInput, CreateUserRequestBody, UpdateUserInput } from '@models'
+import { createUserRequestBodySchema, updateUserInputSchema } from '../models/users/usersModels.schema'
 
 const userDomain = {
   // Getting all users
@@ -44,6 +44,28 @@ const userDomain = {
     if (!newUser) return null
 
     return newUser
+  },
+
+  // Updating a user
+  updateUser: async (updateUser: UpdateUserInput) => {
+    const validation = updateUserInputSchema.safeParse(updateUser)
+
+    if (!validation.success) throw Boom.badRequest('Invalid input!', validation.error)
+
+    const user = await userStore.getUser(updateUser.userId)
+
+    if (updateUser.email) {
+      const oldUser = await userStore.getUserByEmail(updateUser.email)
+      if (oldUser) throw Boom.conflict('Email is already taken!')
+    }
+
+    if (!user) throw Boom.notFound('User not found!')
+
+    const updatedUser = await userStore.updateUser(updateUser)
+
+    if (!updatedUser) return null
+
+    return updatedUser
   },
 }
 

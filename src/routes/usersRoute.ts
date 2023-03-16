@@ -1,4 +1,4 @@
-import controller from '@controllers/usersController'
+import userController from '@controllers/usersController'
 import { Router } from 'express'
 //import auth from '@middlewares/auth'
 
@@ -10,15 +10,15 @@ const router = Router()
   next()
 }) */
 
-router.get('/', controller.getUsers)
-router.get('/:id', controller.getUser)
-router.post('/', controller.createUser)
+router.get('/', userController.getUsers)
+router.post('/', userController.createUser)
+router.get('/:id', userController.getUser)
+router.put('/:id', userController.updateUser)
 
 // To use the auth middleware
 // router.get('/', auth, controller.getUsers)
 
 // CRUD Examples
-// router.put(`/:id`, auth, controller.updateUser)
 // router.delete(`/:id`, auth, controller.deleteUser)
 
 export default router
