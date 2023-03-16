@@ -3,7 +3,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import * as dotenv from 'dotenv'
-import { limiter } from './utils/rateLimiter'
+import limiter from '@utils/rateLimiter'
 
 // Load environment variables from .env file
 dotenv.config()
