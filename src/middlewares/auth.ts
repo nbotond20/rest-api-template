@@ -14,7 +14,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.header('Authorization')?.replace('Bearer ', '')
 
     if (!token) {
-      return res.status(403).send('Access denied. No token provided.')
+      return res.status(401).send('Access denied. No token provided.')
     }
 
     const decoded = jwt.verify(token, SECRET_KEY)
