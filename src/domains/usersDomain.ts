@@ -41,7 +41,7 @@ const userDomain = {
 
     const newUser = await userStore.createUser(user)
 
-    if (!newUser) return null
+    if (!newUser) throw Boom.internal('Something went wrong!')
 
     return newUser
   },
@@ -63,7 +63,7 @@ const userDomain = {
 
     const updatedUser = await userStore.updateUser(updateUser)
 
-    if (!updatedUser) return null
+    if (!updatedUser) throw Boom.internal('Something went wrong!')
 
     return updatedUser
   },
@@ -78,7 +78,7 @@ const userDomain = {
 
     const deletedUser = await userStore.deleteUser(userId)
 
-    if (!deletedUser) return null
+    if (!deletedUser) throw Boom.internal('Something went wrong!')
 
     return deletedUser
   },

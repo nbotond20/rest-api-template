@@ -8,9 +8,7 @@ const userController = {
     try {
       const users = await userDomain.getUsers()
 
-      if (users) return res.status(200).send(users)
-
-      res.status(404).send({ message: 'No users found!' })
+      return res.status(200).send(users)
     } catch (error) {
       next(error)
     }
@@ -20,11 +18,10 @@ const userController = {
   getUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId = req.params.id as string
+
       const user = await userDomain.getUser(userId)
 
-      if (user) return res.status(200).send(user)
-
-      res.status(404).send({ message: 'User not found!' })
+      res.status(200).send(user)
     } catch (error) {
       next(error)
     }
@@ -34,11 +31,10 @@ const userController = {
   createUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = req.body as CreateUserRequestBody
-      const newUser = await userDomain.createUser(user)
 
-      if (newUser) return res.status(201).send(newUser)
+      const createdUser = await userDomain.createUser(user)
 
-      res.status(500).send({ message: 'User not created!' })
+      return res.status(201).send(createdUser)
     } catch (error) {
       next(error)
     }
@@ -48,13 +44,11 @@ const userController = {
   updateUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId = req.params.id as string
-      const updateUser = req.body as UpdateUserRequestBody
+      const updateUserInput = req.body as UpdateUserRequestBody
 
-      const updatedUser = await userDomain.updateUser({ ...updateUser, userId })
+      const updatedUser = await userDomain.updateUser({ ...updateUserInput, userId })
 
-      if (updatedUser) return res.status(200).send(updatedUser)
-
-      res.status(500).send({ message: 'User not updated!' })
+      return res.status(200).send(updatedUser)
     } catch (error) {
       next(error)
     }
@@ -64,11 +58,10 @@ const userController = {
   deleteUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId = req.params.id as string
+
       const deletedUser = await userDomain.deleteUser(userId)
 
-      if (deletedUser) return res.status(200).send(deletedUser)
-
-      res.status(500).send({ message: 'User not deleted!' })
+      return res.status(200).send(deletedUser)
     } catch (error) {
       next(error)
     }
