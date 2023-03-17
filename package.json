@@ -41,7 +41,7 @@
   "scripts": {
     "dev": "nodemon",
     "start": "ts-node -r tsconfig-paths/register --transpile-only ./src/index.ts",
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.json",
     "lint": "eslint \"**/*.{ts,json}\"",
     "lint:fix": "eslint \"**/*.{ts,json}\" --quiet --fix",
     "preinstall": "npx only-allow pnpm",
