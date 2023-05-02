@@ -1,6 +1,7 @@
 import app from './app'
 import errorHandler from '@middlewares/errorHandler'
 import userRoute from '@routes/usersRoute'
+import authRoute from '@routes/authRoute'
 import { Boom } from '@hapi/boom'
 
 const BASE_URL = '/api/v1'
@@ -9,6 +10,7 @@ function setBasePath(route: string) {
 }
 
 // List the available routes
+app.use(setBasePath('/auth'), authRoute)
 app.use(setBasePath('/users'), userRoute)
 
 // Catch 404 and forward to error handler

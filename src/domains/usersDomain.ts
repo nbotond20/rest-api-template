@@ -24,6 +24,17 @@ const userDomain = {
     return user
   },
 
+  // Getting a specific user by email
+  getUserByEmail: async (email: string) => {
+    if (!email) throw Boom.badRequest('User email is required!')
+
+    const user = await userStore.getUserByEmail(email)
+
+    if (!user) throw Boom.notFound('User not found!')
+
+    return user
+  },
+
   // Adding a new user
   createUser: async (createUser: CreateUserRequestBody) => {
     const validation = createUserRequestBodySchema.safeParse(createUser)
@@ -37,6 +48,7 @@ const userDomain = {
       name: createUser.name,
       age: createUser.age,
       email: createUser.email,
+      password: createUser.password,
     }
 
     const newUser = await userStore.createUser(user)

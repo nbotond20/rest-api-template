@@ -17,10 +17,19 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
       return res.status(401).send('Access denied. No token provided.')
     }
 
-    const decoded = jwt.verify(token, SECRET_KEY)
+    const decoded = jwt.verify(token, SECRET_KEY, {
+      algorithms: ['HS256'],
+    })
+
     ;(req as CustomRequest).token = decoded
   } catch (err) {
-    return res.status(401).send('Invalid access token.')
+    if (err instanceof jwt.TokenExpiredError) {
+      return res.status(401).send('Access token has expired.')
+    } else if (err instanceof jwt.JsonWebTokenError) {
+      return res.status(401).send('Invalid access token.')
+    } else {
+      return res.status(500).send('Internal server error.')
+    }
   }
   return next()
 }

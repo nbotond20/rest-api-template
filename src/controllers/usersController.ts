@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import userDomain from '@domains/usersDomain'
-import { CreateUserRequestBody, UpdateUserRequestBody } from '@models'
+import { UpdateUserRequestBody } from '@models'
 
 const userController = {
   // Getting all users
@@ -22,19 +22,6 @@ const userController = {
       const user = await userDomain.getUser(userId)
 
       res.status(200).send(user)
-    } catch (error) {
-      next(error)
-    }
-  },
-
-  // Adding a new user
-  createUser: async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const user = req.body as CreateUserRequestBody
-
-      const createdUser = await userDomain.createUser(user)
-
-      return res.status(201).send(createdUser)
     } catch (error) {
       next(error)
     }

@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import {
   createUserRequestBodySchema,
+  loginUserRequestBodySchema,
   updateUserInputSchema,
   updateUserRequestBodySchema,
   userSchema,
@@ -11,3 +12,4 @@ export type CreateUserRequestBody = z.infer<typeof createUserRequestBodySchema>
 export type CreateUserInput = z.infer<typeof createUserRequestBodySchema>
 export type UpdateUserRequestBody = z.infer<typeof updateUserRequestBodySchema>
 export type UpdateUserInput = z.infer<typeof updateUserInputSchema>
+export type LoginUserRequestBody = z.infer<typeof loginUserRequestBodySchema>
