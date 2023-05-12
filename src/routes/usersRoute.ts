@@ -1,12 +1,12 @@
 import userController from '@controllers/usersController'
-import auth from '@middlewares/auth'
 import { Router } from 'express'
+import { requiresAuth } from 'express-openid-connect'
 //import auth from '@middlewares/auth'
 
 const router = Router()
 
 // Use middleware for every call on this route
-router.use(auth)
+router.use(requiresAuth())
 
 router.get('/', userController.getUsers)
 router.get('/:id', userController.getUser)
