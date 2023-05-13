@@ -31,11 +31,19 @@ To use this boilerplate, you need to have the following installed on your machin
    DATABASE_URL=
    PORT=
    TOKEN_KEY=
+   BASE_URL=
+   CLIENT_ID=
+   DOMAIN=
+   SECRET=
    ```
 
    - The `DATABASE_URL` variable should contain the connection string to your database.
    - The `PORT` variable should contain the port number on which the server will run.
    - The `TOKEN_KEY` variable should contain a secret key that will be used to sign the JWT tokens.
+   - The `BASE_URL` variable should contain the base URL of your application.
+   - The `CLIENT_ID` variable should contain the client ID of your Auth0 application.
+   - The `DOMAIN` variable should contain the domain of your Auth0 application.
+   - The `SECRET` variable should contain the secret of your Auth0 application.
 
 ### Running the App
 
